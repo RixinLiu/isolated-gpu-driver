@@ -177,6 +177,10 @@ static bool va_space_check_processors_masks(uvm_va_space_t *va_space)
 
 NV_STATUS uvm_va_space_create(struct address_space *mapping, uvm_va_space_t **va_space_ptr, NvU64 flags)
 {
+    // Rixin
+    pr_info("uvm: creating va_space for pid=%d\n", current->tgid);
+    // Rixin
+    
     NV_STATUS status;
     uvm_va_space_t *va_space = uvm_kvmalloc_zero(sizeof(*va_space));
     uvm_gpu_id_t gpu_id;
@@ -278,6 +282,10 @@ NV_STATUS uvm_va_space_create(struct address_space *mapping, uvm_va_space_t **va
     uvm_mutex_lock(&g_uvm_global.va_spaces.lock);
     list_add_tail(&va_space->list_node, &g_uvm_global.va_spaces.list);
     uvm_mutex_unlock(&g_uvm_global.va_spaces.lock);
+
+    // Rixin
+    va_space->pid = current->tgid;
+    // Rixin
 
     *va_space_ptr = va_space;
 

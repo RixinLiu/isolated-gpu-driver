@@ -185,6 +185,10 @@ typedef struct
 
 struct uvm_va_space_struct
 {
+    // Rixin
+    int pid;
+    // Rixin
+
     // Mask of gpus registered with the va space
     uvm_processor_mask_t registered_gpus;
 

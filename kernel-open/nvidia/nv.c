@@ -22,6 +22,9 @@
  */
 
 #include <linux/module.h>  // for MODULE_FIRMWARE
+// Rixin
+#include <linux/printk.h>
+// Rixin
 
 // must precede "nv.h" and "nv-firmware.h" includes
 #define NV_FIRMWARE_FOR_NAME(name)  "nvidia/" NV_VERSION_STRING "/" name ".bin"
@@ -822,6 +825,11 @@ static void nv_unregister_chrdev(
 
 static int __init nvidia_init_module(void)
 {
+
+    // Rixin
+    pr_info("RYAN_MPS_OK: custom nvidia.ko loaded");
+    // Rixin
+    
     int rc;
     NvU32 count;
     NvBool warn_unprobed = NV_FALSE;

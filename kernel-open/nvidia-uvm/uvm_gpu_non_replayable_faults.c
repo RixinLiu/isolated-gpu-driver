@@ -673,6 +673,13 @@ static NV_STATUS service_fault_once(uvm_parent_gpu_t *parent_gpu,
         return NV_OK;
     }
 
+    // Rixin
+    if (fault_entry->va_space) {
+        pr_info("UVM: Non-replayable fault, pid=%d\n",
+                fault_entry->va_space->pid);
+    }
+    // Rixin
+
     UVM_ASSERT(va_space);
     UVM_ASSERT(gpu);
 
